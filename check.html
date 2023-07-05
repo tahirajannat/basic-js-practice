@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="checkboxContainer"></div>
+
+    <script>
+        function createCheckboxes(inputValues) {
+            var container = document.getElementById('checkboxContainer');
+
+            // Clear any existing checkboxes
+            container.innerHTML = '';
+
+            // Generate checkboxes dynamically
+            for (var i = 0; i < inputValues.length; i++) {
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = inputValues[i];
+                checkbox.id = 'checkbox' + i;
+
+                var label = document.createElement('label');
+                label.htmlFor = checkbox.id;
+                label.appendChild(document.createTextNode(inputValues[i]));
+
+                container.appendChild(checkbox);
+                container.appendChild(label);
+
+                // Add an event listener to remove the checkbox when checked
+                checkbox.addEventListener('change', function () {
+                    if (this.checked) {
+                        container.removeChild(this);
+                        container.removeChild(label);
+                    }
+                });
+            }
+        }
+
+        // Example usage:
+        var inputValues = ['Value 1', 'Value 2', 'Value 3'];
+        createCheckboxes(inputValues);
+    </script>
+
+</body>
+
+</html>
