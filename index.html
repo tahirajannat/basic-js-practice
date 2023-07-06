@@ -88,10 +88,10 @@
     </div>
     <h2>Please choose a seat to book</h2>
     <form method="post">
-        <!-- <input type="checkbox" name="vehicle" id="A1" value="$100">$100<br>
+        <input type="checkbox" name="vehicle" id="A1" value="$100">$100<br>
         <input type="checkbox" name="vehicle" id="A2" value="$65"> $65<br>
         <input type="checkbox" name="vehicle" id="A3" value="$55"> $55<br>
-        <input type="checkbox" name="vehicle" id="A4" value="$50"> $50<br> -->
+        <input type="checkbox" name="vehicle" id="A4" value="$50"> $50<br>
         <p>Selected Seat(s)</p>
 
         <!-- container for displaying selected seats -->
@@ -102,39 +102,39 @@
         </div>
     </form>
     <script>
-        // var selections = {};
-        // var checkboxElems = document.querySelectorAll("input[type='checkbox']");
-        // var totalElem = document.getElementById("seats-total");
-        // var seatsElem = document.getElementById("selected-seats");
+        var selections = {};
+        var checkboxElems = document.querySelectorAll("input[type='checkbox']");
+        var totalElem = document.getElementById("seats-total");
+        var seatsElem = document.getElementById("selected-seats");
 
-        // for (var i = 0; i < checkboxElems.length; i++) {
-        //     checkboxElems[i].addEventListener("click", displayCheck);
-        // }
+        for (var i = 0; i < checkboxElems.length; i++) {
+            checkboxElems[i].addEventListener("click", displayCheck);
+        }
 
-        // function displayCheck(e) {
-        //     if (e.target.checked) {
-        //         selections[e.target.id] = {
-        //             name: e.target.name,
-        //             value: e.target.value
-        //         };
-        //     }
-        //     else {
-        //         delete selections[e.target.id];
-        //     }
+        function displayCheck(e) {
+            if (e.target.checked) {
+                selections[e.target.id] = {
+                    name: e.target.name,
+                    value: e.target.value
+                };
+            }
+            else {
+                delete selections[e.target.id];
+            }
 
-        //     var result = [];
-        //     var total = 0;
+            var result = [];
+            var total = 0;
 
-        //     for (var key in selections) {
-        //         var listItem = "<li>" + selections[key].name + " " +
-        //             selections[key].value + "</li>";
-        //         result.push(listItem);
-        //         total += parseInt(selections[key].value.substring(1));
-        //     }
+            for (var key in selections) {
+                var listItem = "<li>" + selections[key].name + " " +
+                    selections[key].value + "</li>";
+                result.push(listItem);
+                total += parseInt(selections[key].value.substring(1));
+            }
 
-        //     totalElem.innerText = total;
-        //     seatsElem.innerHTML = result.join("");
-        // }
+            totalElem.innerText = total;
+            seatsElem.innerHTML = result.join("");
+        }
     </script>
     <script src="./js/script.js"></script>
 </body>

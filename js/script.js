@@ -52,6 +52,10 @@ const newTodo = () => {
     console.log("checkboxElems", checkboxElems);
     var totalElem = document.getElementById("seats-total");
     var seatsElem = document.getElementById("completed-list");
+    var selections = {};
+    var checkboxElems = document.querySelectorAll("input[type='checkbox']");
+    var totalElem = document.getElementById("seats-total");
+    // var seatsElem = document.getElementById("selected-seats");
 
     for (var i = 0; i < checkboxElems.length; i++) {
         checkboxElems[i].addEventListener("click", displayCheck);
@@ -61,7 +65,7 @@ const newTodo = () => {
         if (e.target.checked) {
             selections[e.target.id] = {
                 name: e.target.name,
-                value: e.target.value.split(" "),
+                value: e.target.value,
             };
         } else {
             delete selections[e.target.id];
@@ -71,29 +75,12 @@ const newTodo = () => {
         var total = 0;
 
         for (var key in selections) {
-            var list = `<input class="hidden" type="checkbox" id="completed-task_1" checked>
-            <label id="completed-list"
-                class="flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
-                for="completed-task_1">
-                <span
-                    class="flex items-center justify-center w-5 h-5 text-transparent border-2 border-gray-300 rounded-full">
-                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                        fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </span>
-                <span class="ml-4 text-sm">$selections[key].name +</span>
-            </label>`;
             var listItem =
-                '<input class="hidden" type="checkbox" id="completed-task_1" checked>' +
-                '<label id="completed-list" class="flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100" for="completed-task_1">' +
-                '<span class="flex items-center justify-center w-5 h-5 text-transparent border-2 border-gray-300 rounded-full"><svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"clip-rule="evenodd" /></svg></span>' +
-                '<span class="ml-4 text-sm">' +
-                selections[key].value.split(" ") +
-                "</span>" +
-                "</label>";
+                "<li>" +
+                selections[key].name +
+                " " +
+                selections[key].value +
+                "</li>";
             result.push(listItem);
             total += parseInt(selections[key].value.substring(1));
         }
